@@ -112,7 +112,9 @@ function msearch(
 		});
 
 		if (config.graphQLUrl) {
-			fetchGraphQL(config.graphQLUrl, config.url, config.credentials, config.app, query)
+			const customFetchGraphQL = config.fetchGraphQL || fetchGraphQL;
+
+			customFetchGraphQL(config.graphQLUrl, config.url, config.credentials, config.app, query)
 				.then((res) => {
 					handleResponseMSearch(
 						{
